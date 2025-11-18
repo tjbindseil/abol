@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="ChatGPT">
+  <!-- Start -->
+  <wpt lat="39.985640" lon="-105.252600">
+    <name>Start</name>
+    <time>2025-01-01T12:00:00Z</time>
+  </wpt>
+
+  <!-- ~80m -->
+  <wpt lat="39.986000" lon="-105.251900">
+    <name>Step 1</name>
+    <time>2025-01-01T12:00:03Z</time>
+  </wpt>
+
+  <!-- ~160m -->
+  <wpt lat="39.986450" lon="-105.251100">
+    <name>Step 2</name>
+    <time>2025-01-01T12:00:06Z</time>
+  </wpt>
+
+  <!-- ~240m -->
+  <wpt lat="39.986900" lon="-105.250300">
+    <name>Step 3</name>
+    <time>2025-01-01T12:00:09Z</time>
+  </wpt>
+
+  <!-- ~320m -->
+  <wpt lat="39.987350" lon="-105.249500">
+    <name>Step 4</name>
+    <time>2025-01-01T12:00:12Z</time>
+  </wpt>
+
+  <!-- ~400m -->
+  <wpt lat="39.987800" lon="-105.248700">
+    <name>Step 5</name>
+    <time>2025-01-01T12:00:15Z</time>
+  </wpt>
+
+  <!-- ~500m (End) -->
+  <wpt lat="39.988250" lon="-105.247900">
+    <name>End (~500m)</name>
+    <time>2025-01-01T12:00:18Z</time>
+  </wpt>
+</gpx>
