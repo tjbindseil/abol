@@ -8,15 +8,10 @@
 import SwiftUI
 
 @main
-struct ForgetAboutForgettingApp: App {
-    @StateObject private var locationController = LocationController(
-        useTestManager: ProcessInfo.processInfo.arguments.contains("UI_TEST_MODE")
-    )
-    
+struct AbolApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(locationController)
         }
     }
 }
