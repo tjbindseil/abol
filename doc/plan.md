@@ -36,7 +36,6 @@
         * thiturned out to be quite difficult, see testing.md
 
 ## bugs
-* why does the default message sometimes show up
 
 ## completed
 * better title
@@ -44,3 +43,4 @@
 * can I alarm instead of notification
     - no
     - see tasks/alarm_instead_of_notification.md
+* why does the default message sometimes show up

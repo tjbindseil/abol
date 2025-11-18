@@ -70,7 +70,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     func locationManager(_ manager: CLLocationManager,
                          didExitRegion region: CLRegion) {
         print("Exited region!")
-        NotificationManager.shared.triggerExitNotification(note: "Don't forget your item!")
         exitEventTriggered = true
     }
 
