@@ -256,6 +256,8 @@
 				DEVELOPMENT_TEAM = RYFZ595R46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always-on location is required to detect when you leave an area and trigger your reminder.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App uses the location when its open to set the alarm";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -289,6 +291,8 @@
 				DEVELOPMENT_TEAM = RYFZ595R46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always-on location is required to detect when you leave an area and trigger your reminder.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App uses the location when its open to set the alarm";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

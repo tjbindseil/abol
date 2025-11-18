@@ -52,7 +52,7 @@ class LocationController: NSObject, CLLocationManagerDelegate, ObservableObject 
 
         let region = CLCircularRegion(
             center: center,
-            radius: 50,
+            radius: 200,
             identifier: "leave_area"
         )
         region.notifyOnExit = true

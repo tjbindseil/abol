@@ -43,8 +43,8 @@ struct ContentView: View {
             } else {
                 Button("Arm Alarm") {
                     // TODO arm at current location again
-                    let loc = CLLocation(latitude: 39.98564, longitude: -105.25260)
-                    controller.armAlarm(note: text, at: loc.coordinate)
+                    // let loc = CLLocation(latitude: 39.98564, longitude: -105.25260)
+                    controller.armAlarm(note: text)
                     
                     // set widget
                     // AlarmStatusStore.setAlarmArmed(true)
