@@ -18,6 +18,7 @@
 * pocketnife before leaving house
 * fold laundry when getting home
 * turn off oven before leaving
+* don't forget to pump up bike tires
 
 
 ## now, in priority order:
