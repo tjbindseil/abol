@@ -6,11 +6,62 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		328499462ECE67E000C889C0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328499452ECE67E000C889C0 /* WidgetKit.framework */; };
+		328499482ECE67E000C889C0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328499472ECE67E000C889C0 /* SwiftUI.framework */; };
+		328499552ECE67E300C889C0 /* LockScreenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 328499432ECE67E000C889C0 /* LockScreenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		328499532ECE67E300C889C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32E614172ECD19B60007E17F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 328499422ECE67E000C889C0;
+			remoteInfo = LockScreenWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		328499562ECE67E300C889C0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				328499552ECE67E300C889C0 /* LockScreenWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		328499432ECE67E000C889C0 /* LockScreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockScreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		328499452ECE67E000C889C0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		328499472ECE67E000C889C0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		32E6141F2ECD19B60007E17F /* abol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = abol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		328499592ECE67E300C889C0 /* Exceptions for "LockScreenWidget" folder in "LockScreenWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 328499422ECE67E000C889C0 /* LockScreenWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		328499492ECE67E000C889C0 /* LockScreenWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				328499592ECE67E300C889C0 /* Exceptions for "LockScreenWidget" folder in "LockScreenWidgetExtension" target */,
+			);
+			path = LockScreenWidget;
+			sourceTree = "<group>";
+		};
 		32E614212ECD19B60007E17F /* abol */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = abol;
@@ -19,6 +70,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		328499402ECE67E000C889C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				328499482ECE67E000C889C0 /* SwiftUI.framework in Frameworks */,
+				328499462ECE67E000C889C0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32E6141C2ECD19B60007E17F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,10 +89,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		328499442ECE67E000C889C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				328499452ECE67E000C889C0 /* WidgetKit.framework */,
+				328499472ECE67E000C889C0 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		32E614162ECD19B60007E17F = {
 			isa = PBXGroup;
 			children = (
 				32E614212ECD19B60007E17F /* abol */,
+				328499492ECE67E000C889C0 /* LockScreenWidget */,
+				328499442ECE67E000C889C0 /* Frameworks */,
 				32E614202ECD19B60007E17F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				32E6141F2ECD19B60007E17F /* abol.app */,
+				328499432ECE67E000C889C0 /* LockScreenWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +120,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		328499422ECE67E000C889C0 /* LockScreenWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3284995A2ECE67E300C889C0 /* Build configuration list for PBXNativeTarget "LockScreenWidgetExtension" */;
+			buildPhases = (
+				3284993F2ECE67E000C889C0 /* Sources */,
+				328499402ECE67E000C889C0 /* Frameworks */,
+				328499412ECE67E000C889C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				328499492ECE67E000C889C0 /* LockScreenWidget */,
+			);
+			name = LockScreenWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = LockScreenWidgetExtension;
+			productReference = 328499432ECE67E000C889C0 /* LockScreenWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		32E6141E2ECD19B60007E17F /* abol */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32E6142A2ECD19E50007E17F /* Build configuration list for PBXNativeTarget "abol" */;
@@ -55,10 +149,12 @@
 				32E6141B2ECD19B60007E17F /* Sources */,
 				32E6141C2ECD19B60007E17F /* Frameworks */,
 				32E6141D2ECD19B60007E17F /* Resources */,
+				328499562ECE67E300C889C0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				328499542ECE67E300C889C0 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				32E614212ECD19B60007E17F /* abol */,
@@ -80,6 +176,9 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					328499422ECE67E000C889C0 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					32E6141E2ECD19B60007E17F = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -100,11 +199,19 @@
 			projectRoot = "";
 			targets = (
 				32E6141E2ECD19B60007E17F /* abol */,
+				328499422ECE67E000C889C0 /* LockScreenWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		328499412ECE67E000C889C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32E6141D2ECD19B60007E17F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +222,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3284993F2ECE67E000C889C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32E6141B2ECD19B60007E17F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +238,77 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		328499542ECE67E300C889C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 328499422ECE67E000C889C0 /* LockScreenWidgetExtension */;
+			targetProxy = 328499532ECE67E300C889C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		328499572ECE67E300C889C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RYFZ595R46;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LockScreenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LockScreenWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tj.abol.LockScreenWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		328499582ECE67E300C889C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RYFZ595R46;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LockScreenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LockScreenWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tj.abol.LockScreenWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		32E614282ECD19E50007E17F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -319,6 +503,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3284995A2ECE67E300C889C0 /* Build configuration list for PBXNativeTarget "LockScreenWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				328499572ECE67E300C889C0 /* Debug */,
+				328499582ECE67E300C889C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32E6141A2ECD19B60007E17F /* Build configuration list for PBXProject "abol" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
