@@ -44,15 +44,28 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct LockScreenWidgetEntryView : View {
+    @Environment(\.widgetFamily) var family
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+        switch family {
+        case .accessoryInline:
+            Text("😀")
 
-            Text("Emoji:")
-            Text(entry.emoji)
+        case .accessoryCircular:
+            ZStack {
+                AccessoryWidgetBackground()
+                Text("😀")
+            }
+
+        case .accessoryRectangular:
+            VStack {
+                Text("Time:")
+                Text(entry.date, style: .time)
+            }
+
+        default:
+            Text("Default view")
         }
     }
 }
@@ -73,6 +86,11 @@ struct LockScreenWidget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        .supportedFamilies([
+            .accessoryCircular,
+            .accessoryRectangular,
+            .accessoryInline
+        ])
     }
 }
 
