@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import AppIntents
 
 import os
 
@@ -60,23 +61,39 @@ struct LockScreenWidgetEntryView : View {
         // C. THE RECTANGULAR WIDGET (Wide)
         // Constraint: Good for 2-3 lines of text.
         case .accessoryRectangular:
-            HStack {
-                Image(systemName: entry.isArmed ? "lock.shield.fill" : "lock.slash")
-                    .font(.title)
-                VStack(alignment: .leading) {
-                    Text("ABOL")
-                        .font(.caption2)
-                        .textCase(.uppercase)
-                        .opacity(0.7)
-                    Text(entry.isArmed ? "ARMED" : "DISARMED")
-                        .font(.headline)
-                        .bold()
+            if entry.isArmed {
+                // STATE A: ARMED -> Show Button to Disarm
+                Button(intent: DisarmAlarmIntent()) {
+                    RectangularContent(isArmed: true)
                 }
-                Spacer()
+                .buttonStyle(.plain)
+            } else {
+                // STATE B: DISARMED -> Standard View (Opens App)
+                RectangularContent(isArmed: false)
+                    // .widgetURL(URL(string: "myapp://alarm/arm"))
             }
-
         default:
             EmptyView()
+        }
+    }
+}
+
+struct RectangularContent: View {
+    let isArmed: Bool
+    var body: some View {
+        HStack {
+            Image(systemName: isArmed ? "lock.shield.fill" : "lock.slash")
+                .font(.title)
+            VStack(alignment: .leading) {
+                Text("ABOL")
+                    .font(.caption2)
+                    .textCase(.uppercase)
+                    .opacity(0.7)
+                Text(isArmed ? "ARMED" : "TAP TO SET") // Contextual Text!
+                    .font(.headline)
+                    .bold()
+            }
+            Spacer()
         }
     }
 }

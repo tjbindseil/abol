@@ -52,6 +52,13 @@
 			);
 			target = 328499422ECE67E000C889C0 /* LockScreenWidgetExtension */;
 		};
+		32489E5D2ED11A7100BD6DE6 /* Exceptions for "LockScreenWidget" folder in "abol" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DisarmAlarmIntent.swift,
+			);
+			target = 32E6141E2ECD19B60007E17F /* abol */;
+		};
 		328499592ECE67E300C889C0 /* Exceptions for "LockScreenWidget" folder in "LockScreenWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -65,6 +72,7 @@
 		328499492ECE67E000C889C0 /* LockScreenWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				32489E5D2ED11A7100BD6DE6 /* Exceptions for "LockScreenWidget" folder in "abol" target */,
 				328499592ECE67E300C889C0 /* Exceptions for "LockScreenWidget" folder in "LockScreenWidgetExtension" target */,
 			);
 			path = LockScreenWidget;
