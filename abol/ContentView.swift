@@ -9,6 +9,11 @@ import SwiftUI
 import CoreLocation
 import WidgetKit
 
+import os
+
+// Create a "logger" instance
+let logger = Logger(subsystem: "tj.abol", category: "App-General")
+
 struct ContentView: View {
     @State private var note: String = ""
     @State private var isArmed: Bool = false
@@ -116,6 +121,7 @@ struct ContentView: View {
         WidgetCenter.shared.reloadAllTimelines()
 
         print("armalarm, done kicking widget center")
+        logger.info("TJTAG armalarm end")
 
         isArmed = true
     }

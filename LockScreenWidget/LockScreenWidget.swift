@@ -8,13 +8,19 @@
 import WidgetKit
 import SwiftUI
 
+import os
+
+// Create a "logger" instance
+let logger = Logger(subsystem: "tj.abol", category: "Widget")
+
+
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         // 1. Read from the shared group
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
 
-        print("placeholder, isArmed: \(isArmed)")
+        logger.info("TJTAG placeholder, isArmed: \(isArmed)")
 
         return SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
     }
@@ -24,7 +30,7 @@ struct Provider: TimelineProvider {
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
 
-        print("getsnapshot, isArmed: \(isArmed)")
+        logger.info("TJTAG getsnapshot, isArmed: \(isArmed)")
 
         let entry = SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
         completion(entry)
@@ -35,7 +41,7 @@ struct Provider: TimelineProvider {
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
 
-        print("gettimeline, isArmed: \(isArmed)")
+        logger.info("TJTAG gettimeline, isArmed: \(isArmed)")
         
         var entries: [SimpleEntry] = []
 
