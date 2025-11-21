@@ -15,50 +15,45 @@ let logger = Logger(subsystem: "tj.abol", category: "Widget")
 
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        // 1. Read from the shared group
-        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
 
-        return SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
+    // 1. Placeholder: Instant, generic dummy data.
+    // Don't read DB here. Just show a neutral state.
+    func placeholder(in context: Context) -> SimpleEntry {
+        return SimpleEntry(date: Date(), emoji: "🛡️", isArmed: false)
     }
 
+    // 2. Snapshot: The "Gallery" view.
+    // We try to show real data, but keep it fast.
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        // 1. Read from the shared group
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
-
-        let entry = SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
+        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false
+        
+        let entry = SimpleEntry(date: Date(), emoji: "🛡️", isArmed: isArmed)
         completion(entry)
     }
 
+    // 3. Timeline: The "Real" view.
+    // NO LOOP NEEDED. We only know the state RIGHT NOW.
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        // 1. Read from the shared group
+        
+        // A. Read Data
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
+        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false
+        
+        // B. Create ONE entry for "Now"
+        let entry = SimpleEntry(date: Date(), emoji: "🛡️", isArmed: isArmed)
 
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀", isArmed: isArmed)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        // C. The Policy: .never
+        // This tells iOS: "Display this entry forever until my App explicitly tells you to reload."
+        // This is perfect for an Alarm app.
+        let timeline = Timeline(entries: [entry], policy: .never)
+        
         completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
-
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let emoji: String // TODO utilize or eliminate
     let isArmed: Bool
 }
 
@@ -69,18 +64,17 @@ struct LockScreenWidgetEntryView : View {
     var body: some View {
         switch family {
         case .accessoryInline:
-            Text(entry.isArmed ? "armed" : "unarmed")
+            Text(entry.isArmed ? "i-on" : "i-off")
 
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Text(entry.isArmed ? "armed" : "unarmed")
+                Text(entry.isArmed ? "c-on" : "c-off")
             }
 
         case .accessoryRectangular:
             VStack {
-                Text("Time:")
-                Text(entry.date, style: .time)
+                Text(entry.isArmed ? "r-on" : "r-off")
             }
 
         default:
