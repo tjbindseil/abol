@@ -25,23 +25,15 @@ struct Provider: TimelineProvider {
     // 2. Snapshot: The "Gallery" view.
     // We try to show real data, but keep it fast.
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false
-        
-        let entry = SimpleEntry(isArmed: isArmed)
+        let entry = SimpleEntry(isArmed: AlarmData.isArmed)
         completion(entry)
     }
 
     // 3. Timeline: The "Real" view.
     // NO LOOP NEEDED. We only know the state RIGHT NOW.
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        
-        // A. Read Data
-        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false
-        
         // B. Create ONE entry for "Now"
-        let entry = SimpleEntry(isArmed: isArmed)
+        let entry = SimpleEntry(isArmed: AlarmData.isArmed)
 
         // C. The Policy: .never
         // This tells iOS: "Display this entry forever until my App explicitly tells you to reload."
@@ -103,8 +95,8 @@ struct LockScreenWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("ABOL Widget")
+        .description("See Alarm Based On Location status.")
         .supportedFamilies([
             .accessoryRectangular,
         ])

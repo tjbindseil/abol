@@ -45,6 +45,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		32489E532ED112E700BD6DE6 /* Exceptions for "abol" folder in "LockScreenWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AlarmData.swift,
+			);
+			target = 328499422ECE67E000C889C0 /* LockScreenWidgetExtension */;
+		};
 		328499592ECE67E300C889C0 /* Exceptions for "LockScreenWidget" folder in "LockScreenWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -65,6 +72,9 @@
 		};
 		32E614212ECD19B60007E17F /* abol */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				32489E532ED112E700BD6DE6 /* Exceptions for "abol" folder in "LockScreenWidgetExtension" target */,
+			);
 			path = abol;
 			sourceTree = "<group>";
 		};

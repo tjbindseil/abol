@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CoreLocation
-import WidgetKit
 
 import os
 
@@ -47,12 +46,7 @@ struct ContentView: View {
                     armedLocation = nil
                     locationManager.stopMonitoring()
                     
-                    // 1. Save the data to the shared group
-                    let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-                    sharedDefaults?.set(false, forKey: "isArmed")
-
-                    // 2. KICK the widget so it updates immediately
-                    WidgetCenter.shared.reloadAllTimelines()
+                    AlarmData.isArmed = false
                 }
                 .padding()
             } else {
@@ -97,12 +91,7 @@ struct ContentView: View {
         locationManager.requestLocationPermission()
         locationManager.requestCurrentLocation()
 
-        // 1. Save the data to the shared group
-        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
-        sharedDefaults?.set(true, forKey: "isArmed") // TODO constant for key
-
-        // 2. KICK the widget so it updates immediately
-        WidgetCenter.shared.reloadAllTimelines()
+        AlarmData.isArmed = true
 
         isArmed = true
     }
