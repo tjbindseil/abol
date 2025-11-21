@@ -58,27 +58,58 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct LockScreenWidgetEntryView : View {
-    @Environment(\.widgetFamily) var family
     var entry: Provider.Entry
+    
+    // 1. Hook into the environment to detect the size
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
         switch family {
+        
+        // A. THE INLINE WIDGET (Above the Clock)
+        // Constraint: Can ONLY show Text and SF Symbols. No colors, no shapes.
         case .accessoryInline:
-            Text(entry.isArmed ? "i-on" : "i-off")
-
+            Label(entry.isArmed ? "Alarm Armed" : "Alarm Off", systemImage: entry.isArmed ? "lock.fill" : "lock.open")
+        
+        // B. THE CIRCULAR WIDGET (Small Circle)
+        // Constraint: Very small. Good for a single icon or gauge.
         case .accessoryCircular:
             ZStack {
-                AccessoryWidgetBackground()
-                Text(entry.isArmed ? "c-on" : "c-off")
+                Circle()
+                    .stroke(lineWidth: 2)
+                    .opacity(0.3)
+                
+                Image(systemName: entry.isArmed ? "shield.fill" : "shield.slash")
+                    .font(.title2)
             }
-
+            // Note: Lock Screen widgets are always monochrome/tinted by the system
+            .widgetLabel(entry.isArmed ? "Armed" : "Disarmed") // Shows text when user taps/holds
+            
+        // C. THE RECTANGULAR WIDGET (Wide)
+        // Constraint: Good for 2-3 lines of text.
         case .accessoryRectangular:
-            VStack {
-                Text(entry.isArmed ? "r-on" : "r-off")
+            HStack {
+                Image(systemName: entry.isArmed ? "lock.shield.fill" : "lock.slash")
+                    .font(.title)
+                VStack(alignment: .leading) {
+                    Text("System Status")
+                        .font(.caption2)
+                        .textCase(.uppercase)
+                        .opacity(0.7)
+                    Text(entry.isArmed ? "ARMED" : "DISARMED")
+                        .font(.headline)
+                        .bold()
+                }
+                Spacer()
             }
-
+            
+        // D. FALLBACK (Home Screen / SystemSmall)
         default:
-            Text("Default view")
+            VStack {
+                Text(entry.isArmed ? "🛡️" : "🔓")
+                    .font(.largeTitle)
+                Text(entry.isArmed ? "Armed" : "Safe")
+            }
         }
     }
 }
