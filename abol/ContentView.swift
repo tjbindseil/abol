@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import WidgetKit
 
 struct ContentView: View {
     @State private var note: String = ""
@@ -40,6 +41,17 @@ struct ContentView: View {
                     isArmed = false
                     armedLocation = nil
                     locationManager.stopMonitoring()
+                    
+                    // 1. Save the data to the shared group
+                    print("disarm - about to get sharedDefaults")
+                    let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
+                    print("disarm - in between")
+                    sharedDefaults?.set(false, forKey: "isArmed")
+                    print("disarm - done setting shareddefaults ")
+
+                    // 2. KICK the widget so it updates immediately
+                    WidgetCenter.shared.reloadAllTimelines()
+                    print("disarm - done kicking ")
                 }
                 .padding()
             } else {
@@ -83,6 +95,27 @@ struct ContentView: View {
         NotificationManager.shared.requestPermission()
         locationManager.requestLocationPermission()
         locationManager.requestCurrentLocation()
+
+        print("armalarm, setting shared defaults")
+
+        // 1. Save the data to the shared group
+        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
+        print("armalarm in between, and sharedDefaults is: \(sharedDefaults === nil ? "yes" : "no")")
+        sharedDefaults?.set(true, forKey: "isArmed") // TODO constant for key
+
+        print("armalarm, done setting shared defaults")
+        
+        print("armalarm lets check it after we set it")
+        if let readBackVal = sharedDefaults?.bool(forKey: "isArmed") {
+            print("armalarm readbackval is: \(readBackVal)")
+        } else {
+            print("armalarm readbackval is: nil")
+        }
+
+        // 2. KICK the widget so it updates immediately
+        WidgetCenter.shared.reloadAllTimelines()
+
+        print("armalarm, done kicking widget center")
 
         isArmed = true
     }

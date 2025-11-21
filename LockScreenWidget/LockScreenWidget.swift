@@ -10,22 +10,40 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        // 1. Read from the shared group
+        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
+        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
+
+        print("placeholder, isArmed: \(isArmed)")
+
+        return SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        // 1. Read from the shared group
+        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
+        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
+
+        print("getsnapshot, isArmed: \(isArmed)")
+
+        let entry = SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        // 1. Read from the shared group
+        let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
+        let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
+
+        print("gettimeline, isArmed: \(isArmed)")
+        
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+            let entry = SimpleEntry(date: entryDate, emoji: "😀", isArmed: isArmed)
             entries.append(entry)
         }
 
@@ -41,6 +59,7 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let emoji: String
+    let isArmed: Bool
 }
 
 struct LockScreenWidgetEntryView : View {
@@ -50,12 +69,12 @@ struct LockScreenWidgetEntryView : View {
     var body: some View {
         switch family {
         case .accessoryInline:
-            Text("😀")
+            Text(entry.isArmed ? "armed" : "unarmed")
 
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Text("😀")
+                Text(entry.isArmed ? "armed" : "unarmed")
             }
 
         case .accessoryRectangular:
@@ -92,11 +111,4 @@ struct LockScreenWidget: Widget {
             .accessoryInline
         ])
     }
-}
-
-#Preview(as: .systemSmall) {
-    LockScreenWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
 }
