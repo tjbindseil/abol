@@ -19,7 +19,7 @@ struct Provider: TimelineProvider {
     // 1. Placeholder: Instant, generic dummy data.
     // Don't read DB here. Just show a neutral state.
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), emoji: "🛡️", isArmed: false)
+        return SimpleEntry(isArmed: false)
     }
 
     // 2. Snapshot: The "Gallery" view.
@@ -28,7 +28,7 @@ struct Provider: TimelineProvider {
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false
         
-        let entry = SimpleEntry(date: Date(), emoji: "🛡️", isArmed: isArmed)
+        let entry = SimpleEntry(isArmed: isArmed)
         completion(entry)
     }
 
@@ -41,7 +41,7 @@ struct Provider: TimelineProvider {
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false
         
         // B. Create ONE entry for "Now"
-        let entry = SimpleEntry(date: Date(), emoji: "🛡️", isArmed: isArmed)
+        let entry = SimpleEntry(isArmed: isArmed)
 
         // C. The Policy: .never
         // This tells iOS: "Display this entry forever until my App explicitly tells you to reload."
@@ -52,8 +52,7 @@ struct Provider: TimelineProvider {
     }
 }
 struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let emoji: String // TODO utilize or eliminate
+    let date: Date = Date()
     let isArmed: Bool
 }
 
@@ -65,26 +64,7 @@ struct LockScreenWidgetEntryView : View {
 
     var body: some View {
         switch family {
-        
-        // A. THE INLINE WIDGET (Above the Clock)
-        // Constraint: Can ONLY show Text and SF Symbols. No colors, no shapes.
-        case .accessoryInline:
-            Label(entry.isArmed ? "Alarm Armed" : "Alarm Off", systemImage: entry.isArmed ? "lock.fill" : "lock.open")
-        
-        // B. THE CIRCULAR WIDGET (Small Circle)
-        // Constraint: Very small. Good for a single icon or gauge.
-        case .accessoryCircular:
-            ZStack {
-                Circle()
-                    .stroke(lineWidth: 2)
-                    .opacity(0.3)
-                
-                Image(systemName: entry.isArmed ? "shield.fill" : "shield.slash")
-                    .font(.title2)
-            }
-            // Note: Lock Screen widgets are always monochrome/tinted by the system
-            .widgetLabel(entry.isArmed ? "Armed" : "Disarmed") // Shows text when user taps/holds
-            
+
         // C. THE RECTANGULAR WIDGET (Wide)
         // Constraint: Good for 2-3 lines of text.
         case .accessoryRectangular:
@@ -92,7 +72,7 @@ struct LockScreenWidgetEntryView : View {
                 Image(systemName: entry.isArmed ? "lock.shield.fill" : "lock.slash")
                     .font(.title)
                 VStack(alignment: .leading) {
-                    Text("System Status")
+                    Text("ABOL")
                         .font(.caption2)
                         .textCase(.uppercase)
                         .opacity(0.7)
@@ -102,14 +82,9 @@ struct LockScreenWidgetEntryView : View {
                 }
                 Spacer()
             }
-            
-        // D. FALLBACK (Home Screen / SystemSmall)
+
         default:
-            VStack {
-                Text(entry.isArmed ? "🛡️" : "🔓")
-                    .font(.largeTitle)
-                Text(entry.isArmed ? "Armed" : "Safe")
-            }
+            EmptyView()
         }
     }
 }
@@ -131,9 +106,7 @@ struct LockScreenWidget: Widget {
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
         .supportedFamilies([
-            .accessoryCircular,
             .accessoryRectangular,
-            .accessoryInline
         ])
     }
 }
