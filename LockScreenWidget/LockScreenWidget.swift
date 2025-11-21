@@ -20,8 +20,6 @@ struct Provider: TimelineProvider {
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
 
-        logger.info("TJTAG placeholder, isArmed: \(isArmed)")
-
         return SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
     }
 
@@ -29,8 +27,6 @@ struct Provider: TimelineProvider {
         // 1. Read from the shared group
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
-
-        logger.info("TJTAG getsnapshot, isArmed: \(isArmed)")
 
         let entry = SimpleEntry(date: Date(), emoji: "😀", isArmed: isArmed)
         completion(entry)
@@ -41,8 +37,6 @@ struct Provider: TimelineProvider {
         let sharedDefaults = UserDefaults(suiteName: "group.tj.abol")
         let isArmed = sharedDefaults?.bool(forKey: "isArmed") ?? false // Default to false
 
-        logger.info("TJTAG gettimeline, isArmed: \(isArmed)")
-        
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
