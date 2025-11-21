@@ -70,7 +70,7 @@ struct LockScreenWidgetEntryView : View {
             } else {
                 // STATE B: DISARMED -> Standard View (Opens App)
                 RectangularContent(isArmed: false)
-                    // .widgetURL(URL(string: "myapp://alarm/arm"))
+                    .widgetURL(URL(string: "abol://alarm/reminder_note"))
             }
         default:
             EmptyView()

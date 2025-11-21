@@ -20,6 +20,9 @@ struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var armedLocation: CLLocation?
 
+    // 2. The Focus State (The remote control for the keyboard)
+    @FocusState private var isNoteFieldFocused: Bool
+
     var body: some View {
         VStack(spacing: 24) {
 
@@ -31,6 +34,8 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
                 .disabled(isArmed)
+                // Bind the focus state here
+                .focused($isNoteFieldFocused)
 
             if isArmed {
                 // Show captured coordinates
@@ -83,6 +88,15 @@ struct ContentView: View {
                 locationManager.stopMonitoring()
             }
         }
+        // 4. The Deep Link Handler
+        .onOpenURL { url in
+            print("🚀 App opened with URL: \(url)")
+            
+            // Check if the URL matches your specific command
+            if url.scheme == "abol" && url.host == "alarm" && url.path == "/reminder_note" {
+                handleDeepLink()
+            }
+        }
     }
 
     private func armAlarm() {
@@ -94,5 +108,15 @@ struct ContentView: View {
         AlarmData.isArmed = true
 
         isArmed = true
+    }
+    
+    func handleDeepLink() {
+        // 5. THE TRICK: Add a slight delay.
+        // If you try to focus immediately while the app is zooming in,
+        // iOS will ignore it. We wait 0.5 seconds for the animation to settle.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            // This triggers the keyboard!
+            isNoteFieldFocused = true
+        }
     }
 }

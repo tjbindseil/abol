@@ -59,6 +59,13 @@
 			);
 			target = 32E6141E2ECD19B60007E17F /* abol */;
 		};
+		32489E5F2ED11F9A00BD6DE6 /* Exceptions for "abol" folder in "abol" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 32E6141E2ECD19B60007E17F /* abol */;
+		};
 		328499592ECE67E300C889C0 /* Exceptions for "LockScreenWidget" folder in "LockScreenWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -81,6 +88,7 @@
 		32E614212ECD19B60007E17F /* abol */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				32489E5F2ED11F9A00BD6DE6 /* Exceptions for "abol" folder in "abol" target */,
 				32489E532ED112E700BD6DE6 /* Exceptions for "abol" folder in "LockScreenWidgetExtension" target */,
 			);
 			path = abol;
@@ -463,6 +471,7 @@
 				DEVELOPMENT_TEAM = RYFZ595R46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = abol/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always-on location is required to detect when you leave an area and trigger your reminder.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App uses the location when its open to set the alarm";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -499,6 +508,7 @@
 				DEVELOPMENT_TEAM = RYFZ595R46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = abol/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always-on location is required to detect when you leave an area and trigger your reminder.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App uses the location when its open to set the alarm";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
