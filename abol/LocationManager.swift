@@ -69,8 +69,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     func locationManager(_ manager: CLLocationManager,
                          didExitRegion region: CLRegion) {
-        print("Exited region!")
-        exitEventTriggered = true
+        print("TJTAG - Exited region!")
+        
+        if (AlarmManager.currentArmedState) {
+            exitEventTriggered = true
+        }
     }
 
 }

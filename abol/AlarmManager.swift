@@ -37,6 +37,7 @@ class AlarmManager: ObservableObject {
     
     // ✅ NEW FUNCTION: Force a re-read from disk
     func checkForExternalChanges() {
+        print("TJTAG - checkForExternalChanges")
         let latestValue = UserDefaults(suiteName: AlarmKeys.appGroup)?.bool(forKey: AlarmKeys.keyIsArmed) ?? false
         
         // If disk says False, but App says True -> Update App to False

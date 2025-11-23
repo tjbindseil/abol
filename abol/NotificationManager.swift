@@ -21,6 +21,8 @@ class NotificationManager {
     }
 
     func triggerExitNotification(note: String) {
+        print("TJTAG - NotificationManager.triggerExitNotification")
+        
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
         content.body = note.isEmpty ? "You left the area." : note

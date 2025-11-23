@@ -18,7 +18,6 @@ struct ContentView: View {
     @EnvironmentObject var alarmManager: AlarmManager
 
     @State private var note: String = ""
-    @State private var isArmed: Bool = false
 
     @StateObject private var locationManager = LocationManager()
     @State private var armedLocation: CLLocation?
@@ -84,6 +83,7 @@ struct ContentView: View {
         }
         .onChange(of: locationManager.exitEventTriggered) { didExit in
             // TODO the fact that content view is managing this is whack
+            print("TJTAG onchange, didExit event is: \(didExit)")
             if didExit {
                 NotificationManager.shared.triggerExitNotification(note: note)
                 armedLocation = nil
@@ -108,8 +108,6 @@ struct ContentView: View {
         locationManager.requestCurrentLocation()
 
         alarmManager.isArmed = true
-
-        isArmed = true
     }
     
     func handleDeepLink() {

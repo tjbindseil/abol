@@ -23,3 +23,6 @@ need to fetch the SharedDefaults value. If this is `disarmed` (as opposed to wha
 
 UNLESS `checkForExternalChanges` is called even when the region did exit thing happens (instead of user opening app)
 * lets check this, and general control flow
+    * it does not fire when the region did exit thing happen
+
+so, now we need to call `checkForExternalChanges` (or something similar) when the alarm goes off
