@@ -19,15 +19,8 @@ struct DisarmAlarmIntent: AppIntent {
 
     // 3. The Action: What happens when the button is tapped?
     func perform() async throws -> some IntentResult {
-        
-        // A. Toggle the state
-        // Note: This calls your 'AlarmData' setter, which AUTOMATICALLY reloads the timeline!
-        // only disarm, as arming requires getting gps and gets a bit complicated
-        if AlarmData.isArmed {
-            AlarmData.isArmed = false
-        }
-        
-        // B. Return success
+        // note, this will only...
+        AlarmManager.updateAlarmState(to: false)
         return .result()
     }
 }

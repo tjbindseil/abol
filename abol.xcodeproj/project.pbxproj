@@ -48,7 +48,7 @@
 		32489E532ED112E700BD6DE6 /* Exceptions for "abol" folder in "LockScreenWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				AlarmData.swift,
+				AlarmManager.swift,
 			);
 			target = 328499422ECE67E000C889C0 /* LockScreenWidgetExtension */;
 		};

@@ -14,6 +14,9 @@ import os
 let logger = Logger(subsystem: "tj.abol", category: "App-General")
 
 struct ContentView: View {
+    // Receive the shared manager
+    @EnvironmentObject var alarmManager: AlarmManager
+
     @State private var note: String = ""
     @State private var isArmed: Bool = false
 
@@ -33,11 +36,11 @@ struct ContentView: View {
             TextField("Reminder note...", text: $note)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
-                .disabled(isArmed)
+                .disabled(alarmManager.isArmed)
                 // Bind the focus state here
                 .focused($isNoteFieldFocused)
 
-            if isArmed {
+            if alarmManager.isArmed {
                 // Show captured coordinates
                 if let loc = armedLocation {
                     Text("Armed at: \(loc.coordinate.latitude), \(loc.coordinate.longitude)")
@@ -47,11 +50,10 @@ struct ContentView: View {
                 }
 
                 Button("Disarm") {
-                    isArmed = false
                     armedLocation = nil
                     locationManager.stopMonitoring()
                     
-                    AlarmData.isArmed = false
+                    alarmManager.isArmed = false
                 }
                 .padding()
             } else {
@@ -72,7 +74,7 @@ struct ContentView: View {
         }
         .padding()
         .onChange(of: locationManager.lastKnownLocation) { newLocation in
-            if isArmed && armedLocation == nil {
+            if alarmManager.isArmed && armedLocation == nil {
                 armedLocation = newLocation
                 
                 if let loc = newLocation {
@@ -81,9 +83,9 @@ struct ContentView: View {
             }
         }
         .onChange(of: locationManager.exitEventTriggered) { didExit in
+            // TODO the fact that content view is managing this is whack
             if didExit {
                 NotificationManager.shared.triggerExitNotification(note: note)
-                isArmed = false
                 armedLocation = nil
                 locationManager.stopMonitoring()
             }
@@ -105,7 +107,7 @@ struct ContentView: View {
         locationManager.requestLocationPermission()
         locationManager.requestCurrentLocation()
 
-        AlarmData.isArmed = true
+        alarmManager.isArmed = true
 
         isArmed = true
     }

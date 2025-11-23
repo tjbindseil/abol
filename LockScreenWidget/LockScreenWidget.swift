@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
     // 2. Snapshot: The "Gallery" view.
     // We try to show real data, but keep it fast.
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(isArmed: AlarmData.isArmed)
+        let entry = SimpleEntry(isArmed: AlarmManager.currentArmedState)
         completion(entry)
     }
 
@@ -34,7 +34,7 @@ struct Provider: TimelineProvider {
     // NO LOOP NEEDED. We only know the state RIGHT NOW.
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         // B. Create ONE entry for "Now"
-        let entry = SimpleEntry(isArmed: AlarmData.isArmed)
+        let entry = SimpleEntry(isArmed: AlarmManager.currentArmedState)
 
         // C. The Policy: .never
         // This tells iOS: "Display this entry forever until my App explicitly tells you to reload."
