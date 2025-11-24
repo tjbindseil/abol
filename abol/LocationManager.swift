@@ -31,6 +31,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     }
     
     func startMonitoring(location: CLLocation, radius: Double = 200) {
+        exitEventTriggered = false
+        
         let region = CLCircularRegion(
             center: location.coordinate,
             radius: radius,
@@ -49,6 +51,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             manager.stopMonitoring(for: region)
         }
         print("Stopped monitoring all regions.")
+        
+        AlarmManager.updateAlarmState(to: false)
     }
     
     // MARK: - Delegate Callbacks
@@ -69,7 +73,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     func locationManager(_ manager: CLLocationManager,
                          didExitRegion region: CLRegion) {
-        print("TJTAG - Exited region!")
+        print("TJTAG - Exited region! and AlarmManager.currentArmedState is: \(AlarmManager.currentArmedState)")
         
         if (AlarmManager.currentArmedState) {
             exitEventTriggered = true
