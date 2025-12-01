@@ -30,7 +30,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         manager.requestLocation()
     }
     
-    func startMonitoring(location: CLLocation, radius: Double = 200) {
+    func startMonitoring(location: CLLocation, radius: Double = 100) {
         exitEventTriggered = false
         
         let region = CLCircularRegion(
