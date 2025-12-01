@@ -42,28 +42,25 @@ struct ContentView: View {
                     UserDefaults.standard.set(newValue, forKey: "note")
                 }
 
-            if alarmManager.isArmed {
-                // Show captured coordinates
-                if let loc = armedLocation {
-                    Text("Armed at: \(loc.coordinate.latitude), \(loc.coordinate.longitude)")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                        .padding(.horizontal)
-                }
-
-                Button("Disarm") {
+            Toggle(isOn: $alarmManager.isArmed) {
+                Text(alarmManager.isArmed ? "Armed - Toggle to Disarm" : "Disarmed - Toggle to Arm")
+            }
+            .padding()
+            .onChange(of: alarmManager.isArmed) { newValue in
+                if newValue {
+                    armAlarm()
+                } else {
                     armedLocation = nil
                     locationManager.stopMonitoring()
-                    
-                    alarmManager.isArmed = false
                 }
-                .padding()
-            } else {
-                Button("Arm Alarm") {
-                    armAlarm()
-                }
-                .padding()
             }
+            if alarmManager.isArmed, let loc = armedLocation {
+                Text("Armed at: \(loc.coordinate.latitude), \(loc.coordinate.longitude)")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .padding(.horizontal)
+            }
+
 
             // Permission alert
             if locationManager.permissionDenied {
