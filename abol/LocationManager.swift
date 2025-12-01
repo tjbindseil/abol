@@ -78,6 +78,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         if (AlarmManager.currentArmedState) {
             exitEventTriggered = true
         }
+        stopMonitoring()
     }
 
 }
