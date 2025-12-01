@@ -21,6 +21,9 @@
 * don't forget to pump up bike tires
 
 
+## to prioritize
+1. clear note button
+
 ## now, in priority order:
 1. a way to see that the alarm is enabled
 2. a way to rearm alarm when it goes off, option to rearm from current location or original location

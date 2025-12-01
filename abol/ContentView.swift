@@ -17,7 +17,7 @@ struct ContentView: View {
     // Receive the shared manager
     @EnvironmentObject var alarmManager: AlarmManager
 
-    @State private var note: String = ""
+    @State private var note = UserDefaults.standard.string(forKey: "note") ?? ""
 
     @StateObject private var locationManager = LocationManager()
     @State private var armedLocation: CLLocation?
@@ -38,6 +38,9 @@ struct ContentView: View {
                 .disabled(alarmManager.isArmed)
                 // Bind the focus state here
                 .focused($isNoteFieldFocused)
+                .onChange(of: note) { newValue in
+                    UserDefaults.standard.set(newValue, forKey: "note")
+                }
 
             if alarmManager.isArmed {
                 // Show captured coordinates
@@ -85,6 +88,9 @@ struct ContentView: View {
             // TODO the fact that content view is managing this is whack
             print("TJTAG onchange, didExit event is: \(didExit)")
             if didExit {
+                
+                // get note from UserDefaults
+                
                 NotificationManager.shared.triggerExitNotification(note: note)
                 armedLocation = nil
                 locationManager.stopMonitoring()
