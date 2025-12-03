@@ -61,6 +61,8 @@ struct ContentView: View {
                     .padding(.horizontal)
             }
 
+            Text("Location enabled correctly? -  \(locationManager.isLocationAlwyasEnabled() ? "✅" : "❌")")
+                .font(.caption)
 
             // Permission alert
             if locationManager.permissionDenied {

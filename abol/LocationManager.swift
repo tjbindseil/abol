@@ -16,10 +16,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var lastKnownLocation: CLLocation?
     @Published var permissionDenied = false
 
+    @Published var status: CLAuthorizationStatus = .notDetermined
+
     override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
+        status = manager.authorizationStatus
     }
 
     func requestLocationPermission() {
@@ -55,6 +58,25 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         AlarmManager.updateAlarmState(to: false)
     }
     
+    func isLocationAlwyasEnabled() -> Bool {
+        return status == .authorizedAlways
+    }
+    
+    func checkLocationPermission() -> String {
+        switch status {
+        case .authorizedAlways:
+            return "Always Allowed"
+        case .authorizedWhenInUse:
+            return "Only When in Use"
+        case .denied, .restricted:
+            return "Denied or Restricted"
+        case .notDetermined:
+            return "Not Determined"
+        @unknown default:
+            return "Unknown"
+        }
+    }
+
     // MARK: - Delegate Callbacks
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
@@ -67,7 +89,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        let status = manager.authorizationStatus
+        status = manager.authorizationStatus
         permissionDenied = (status == .denied || status == .restricted)
     }
     

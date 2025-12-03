@@ -25,10 +25,14 @@
 ## now, in priority order:
 1. show permisions status
     * show when a user has enabled always allow location
-    * show when a user has enabled the lockscreen widget
+    * show when a user has enabled notifications
+    * show a button for each to trigger enable
 2. better icon
 3. rename project (rbol)
 4. clear note button
+
+## bugs
+0. when user arms app, kills app, opens app (before disarming or firing), the "armed at" is not present
 
 ## V2
 * a way to rearm alarm when it goes off, option to rearm from current location or original location
@@ -38,9 +42,6 @@
 * testing
     * do it with a script, including reseting
         * thiturned out to be quite difficult, see testing.md
-
-## bugs
-0. when user arms app, kills app, opens app (before disarming or firing), the "armed at" is not present
 
 ## completed
 * better title
