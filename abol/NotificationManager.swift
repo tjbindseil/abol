@@ -9,7 +9,7 @@ import UserNotifications
 import Combine
 
 class NotificationManager: ObservableObject {
-    @Published var notificationsEnabled = false
+    @Published var notificationsEnabled: Bool = false
     
     static let shared = NotificationManager()
 
@@ -43,19 +43,16 @@ class NotificationManager: ObservableObject {
     func checkNotificationPermission() {
         print("TJTAG - checkNotificationPermission")
         UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let enabled: Bool
             switch settings.authorizationStatus {
             case .authorized, .provisional, .ephemeral:
-                print("TJTAG - checkNotificationPermission, setting to true")
-                self.notificationsEnabled = true
-            case .denied:
-                print("TJTAG - checkNotificationPermission, setting to false")
-                self.notificationsEnabled = false
-            case .notDetermined:
-                print("TJTAG - checkNotificationPermission, setting to false")
-                self.notificationsEnabled = false
-            @unknown default:
-                print("TJTAG - checkNotificationPermission, setting to false")
-                self.notificationsEnabled = false
+                enabled = true
+            default:
+                enabled = false
+            }
+
+            DispatchQueue.main.async {
+                self.notificationsEnabled = enabled
             }
         }
     }
