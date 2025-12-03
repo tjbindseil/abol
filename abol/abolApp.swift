@@ -27,6 +27,8 @@ struct MyApp: App {
                 // The app just came to the foreground!
                 // Check if the Widget changed anything while we were sleeping.
                 alarmManager.checkForExternalChanges()
+                
+                NotificationManager.shared.checkNotificationPermission()
             }
         }
     }

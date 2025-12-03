@@ -14,7 +14,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
 
     @Published var exitEventTriggered = false
     @Published var lastKnownLocation: CLLocation?
-    @Published var permissionDenied = false
 
     @Published var status: CLAuthorizationStatus = .notDetermined
 
@@ -62,20 +61,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         return status == .authorizedAlways
     }
     
-    func checkLocationPermission() -> String {
-        switch status {
-        case .authorizedAlways:
-            return "Always Allowed"
-        case .authorizedWhenInUse:
-            return "Only When in Use"
-        case .denied, .restricted:
-            return "Denied or Restricted"
-        case .notDetermined:
-            return "Not Determined"
-        @unknown default:
-            return "Unknown"
-        }
-    }
 
     // MARK: - Delegate Callbacks
     func locationManager(_ manager: CLLocationManager,
@@ -90,7 +75,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         status = manager.authorizationStatus
-        permissionDenied = (status == .denied || status == .restricted)
     }
     
     func locationManager(_ manager: CLLocationManager,

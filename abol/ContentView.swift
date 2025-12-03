@@ -20,8 +20,12 @@ struct ContentView: View {
     @State private var note = UserDefaults.standard.string(forKey: "note") ?? ""
 
     @StateObject private var locationManager = LocationManager()
-    @State private var armedLocation: CLLocation?
+    @StateObject private var sharedNotificationManager = NotificationManager.shared
 
+    @State private var armedLocation: CLLocation?
+    
+    @State private var notificationStatus = "Loading..."
+    
     // 2. The Focus State (The remote control for the keyboard)
     @FocusState private var isNoteFieldFocused: Bool
 
@@ -61,15 +65,10 @@ struct ContentView: View {
                     .padding(.horizontal)
             }
 
-            Text("Location enabled correctly? -  \(locationManager.isLocationAlwyasEnabled() ? "✅" : "❌")")
+            Text("Location enabled correctly: \(locationManager.isLocationAlwyasEnabled() ? "✅" : "❌")")
                 .font(.caption)
-
-            // Permission alert
-            if locationManager.permissionDenied {
-                Text("Location permission denied. Enable it in Settings.")
-                    .foregroundColor(.red)
-                    .padding(.horizontal)
-            }
+            Text("Notifications enabled correctly: \(sharedNotificationManager.notificationsEnabled ? "✅" : "❌")")
+                .font(.caption)
 
             Spacer()
         }

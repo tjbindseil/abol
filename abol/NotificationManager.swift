@@ -6,11 +6,14 @@
 //
 
 import UserNotifications
+import Combine
 
-class NotificationManager {
+class NotificationManager: ObservableObject {
+    @Published var notificationsEnabled = false
+    
     static let shared = NotificationManager()
 
-    private init() {}
+    init() {}
 
     func requestPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
@@ -35,5 +38,25 @@ class NotificationManager {
         )
 
         UNUserNotificationCenter.current().add(request)
+    }
+
+    func checkNotificationPermission() {
+        print("TJTAG - checkNotificationPermission")
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized, .provisional, .ephemeral:
+                print("TJTAG - checkNotificationPermission, setting to true")
+                self.notificationsEnabled = true
+            case .denied:
+                print("TJTAG - checkNotificationPermission, setting to false")
+                self.notificationsEnabled = false
+            case .notDetermined:
+                print("TJTAG - checkNotificationPermission, setting to false")
+                self.notificationsEnabled = false
+            @unknown default:
+                print("TJTAG - checkNotificationPermission, setting to false")
+                self.notificationsEnabled = false
+            }
+        }
     }
 }
