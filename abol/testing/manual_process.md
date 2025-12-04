@@ -6,7 +6,7 @@ then `debug -> simulate location -> start.gpx` to reset
 ## widget tests
 
 ### Verified (as of git commit 643018ab981bc28b11211a60f7b5f15fae798a34)
-0. open app, start.gpx, enable alarm with note, lock screen, test-route.gpx, ensure alarm fires, open app, ensure alarm is disabled
+0. open app, start.gpx, enable alarm with note, lock screen, test-route.gpx, ensure alarm fires, ensure widget shows disabeld, open app, ensure alarm is disabled
 1. open app, start.gpx, enable alarm with note, lock screen, open app, disable alarm, test-route.gpx, ensure alarm does not fire, open app, ensure alarm is disabled
 2. open app, start.gpx, enable alarm with note, lock screen, test-route.gpx, ensure alarm fires, open app, start.gpx, arm alarm, close app, test-route.gpx, ensure alarm fires
 3. ensure rectangular widget can be added to lock screen

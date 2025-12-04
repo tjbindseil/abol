@@ -23,18 +23,14 @@
 ## to prioritize
 
 ## now, in priority order:
-1. show permisions status
-    * show when a user has enabled always allow location
-    * show when a user has enabled notifications
-    * show a button for each to trigger enable
-2. better icon
-3. rename project (rbol)
-4. clear note button
+1. better icon
+2. rename project (rbol)
 
 ## bugs
 0. when user arms app, kills app, opens app (before disarming or firing), the "armed at" is not present
 
 ## V2
+* show a button for each to trigger enable
 * a way to rearm alarm when it goes off, option to rearm from current location or original location
 * advanced mode (a way to remind someone to do something when they get somewhere)
 * show map with where thing was alarmed, allow users to alarm at a given map point and radius
@@ -53,3 +49,7 @@
 * a way to see that the alarm is enabled
 * basic manual testing process
 * a way to see that the alarm is enabled
+* show permisions status
+    * show when a user has enabled always allow location
+    * show when a user has enabled notifications
+* clear note button

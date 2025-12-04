@@ -23,8 +23,10 @@ struct ContentView: View {
     @StateObject private var sharedNotificationManager = NotificationManager.shared
 
     @State private var armedLocation: CLLocation?
-    
+
     @State private var notificationStatus = "Loading..."
+    
+    @State private var showAbout = false
     
     // 2. The Focus State (The remote control for the keyboard)
     @FocusState private var isNoteFieldFocused: Bool
@@ -45,6 +47,18 @@ struct ContentView: View {
                 .onChange(of: note) { newValue in
                     UserDefaults.standard.set(newValue, forKey: "note")
                 }
+                .overlay(
+                    HStack {
+                        Spacer()
+                        if !note.isEmpty && !alarmManager.isArmed {
+                            Button(action: { note = "" }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.trailing, 8)
+                        }
+                    }
+                )
 
             Toggle(isOn: $alarmManager.isArmed) {
                 Text(alarmManager.isArmed ? "Armed - Toggle to Disarm" : "Disarmed - Toggle to Arm")
@@ -64,11 +78,22 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                     .padding(.horizontal)
             }
+            
+            DisclosureGroup("About", isExpanded: $showAbout) {
+                Text("This app utilizes your location and allows you to set a reminder that goes off when you leave an area. The purpose of this is to help you remember to do a task that needs to be done before leaving an area.")
+                    .font(.body)
+                    .padding(.top, 4)
+                Text("In order for this to work, the app must have location always enabled, and it must have notifications enabled. The status of these two are indicated below.")
+                    .font(.body)
+                    .padding(.top, 4)
 
-            Text("Location enabled correctly: \(locationManager.isLocationAlwyasEnabled() ? "✅" : "❌")")
-                .font(.caption)
-            Text("Notifications enabled correctly: \(sharedNotificationManager.notificationsEnabled ? "✅" : "❌")")
-                .font(.caption)
+                Text("")
+
+                Text("Location enabled correctly: \(locationManager.isLocationAlwyasEnabled() ? "✅" : "❌")")
+                    .font(.caption)
+                Text("Notifications enabled correctly: \(sharedNotificationManager.notificationsEnabled ? "✅" : "❌")")
+                    .font(.caption)
+            }
 
             Spacer()
         }
