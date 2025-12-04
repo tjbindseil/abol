@@ -93,6 +93,11 @@ struct ContentView: View {
                     .font(.caption)
                 Text("Notifications enabled correctly: \(sharedNotificationManager.notificationsEnabled ? "✅" : "❌")")
                     .font(.caption)
+
+                Text("")
+
+                Text("Contact me via email at tjbindseil@gmail.com with any questions or concerns")
+                    .font(.caption)
             }
 
             Spacer()
