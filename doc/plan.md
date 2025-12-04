@@ -23,10 +23,10 @@
 ## to prioritize
 
 ## now, in priority order:
-1. better icon
 
 ## bugs
 0. when user arms app, kills app, opens app (before disarming or firing), the "armed at" is not present
+1. when user first downloads app, can't enable locatioun and notif settings
 
 ## V2
 * show a button for each to trigger enable
@@ -53,3 +53,4 @@
     * show when a user has enabled notifications
 * clear note button
 * rename project (rbol)
+* better icon

@@ -472,6 +472,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = abol/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RBOL;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always-on location is required to detect when you leave an area and trigger your reminder.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App uses the location when its open to set the alarm";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -509,6 +511,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = abol/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RBOL;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always-on location is required to detect when you leave an area and trigger your reminder.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App uses the location when its open to set the alarm";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
