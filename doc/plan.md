@@ -24,7 +24,6 @@
 
 ## now, in priority order:
 1. better icon
-2. rename project (rbol)
 
 ## bugs
 0. when user arms app, kills app, opens app (before disarming or firing), the "armed at" is not present
@@ -53,3 +52,4 @@
     * show when a user has enabled always allow location
     * show when a user has enabled notifications
 * clear note button
+* rename project (rbol)

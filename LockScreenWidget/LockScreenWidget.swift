@@ -85,7 +85,7 @@ struct RectangularContent: View {
             Image(systemName: isArmed ? "lock.shield.fill" : "lock.slash")
                 .font(.title)
             VStack(alignment: .leading) {
-                Text("ABOL")
+                Text("RBOL")
                     .font(.caption2)
                     .textCase(.uppercase)
                     .opacity(0.7)

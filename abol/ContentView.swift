@@ -34,7 +34,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 24) {
 
-            Text("Set Alarm Based on Location!")
+            Text("Reminder Based on Location")
                 .font(.title)
                 .bold()
 
